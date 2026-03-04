@@ -20,7 +20,7 @@ public class Processes {
         this.pid= pid;
     }
 
-    public int getPid(){ 
+    public int getPid(){
         return pid;
     }
 
@@ -52,7 +52,9 @@ public class Processes {
     }
 
 
-    public String toString(){
-        return pid + "         "+Arrival_Time + "           "+ Burst_Time + "             "+ Priority;
-    }
+   @Override
+public String toString(){
+    return String.format("%-4d %-12d %-11d %-8d",
+            pid, Arrival_Time, Burst_Time, Priority);
+}
 }
