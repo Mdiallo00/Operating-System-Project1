@@ -143,12 +143,11 @@ public class Project1_menu {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
 
-            // Optional: if your file has a header, skip it
-            // line = br.readLine();
+           
 
             while ((line = br.readLine()) != null) {
 
-                // If you have blank lines, skip
+                // skip blank spaces
                 if (line.trim().isEmpty()) continue;
 
                 Processes process = new Processes();
@@ -174,13 +173,19 @@ public class Project1_menu {
             System.out.println(task.toString());
         }
 
-        // Step 2: run FCFS
-        Step2Schedulers.ScheduleResult fcfsResult = Step2Schedulers.fcfs(allProcesses);
-        Step2Schedulers.printMetrics("FCFS", fcfsResult);
+        
 
-        // Step 2: run SJF
-        Step2Schedulers.ScheduleResult sjfResult = Step2Schedulers.sjfNonPreemptive(allProcesses);
-        Step2Schedulers.printMetrics("SJF", sjfResult);
+        // FCFS
+Step2Schedulers.ScheduleResult fcfs = Step2Schedulers.fcfs(allProcesses);
+System.out.println("\n=== FCFS Gantt Chart ===");
+Step2Schedulers.printGanttChart(fcfs.gantt);
+Step2Schedulers.printMetrics(fcfs.rows);
+
+// SJF
+Step2Schedulers.ScheduleResult sjf = Step2Schedulers.sjfNonPreemptive(allProcesses);
+System.out.println("\n=== SJF (Non-preemptive) Gantt Chart ===");
+Step2Schedulers.printGanttChart(sjf.gantt);
+Step2Schedulers.printMetrics(sjf.rows);
     }
 }
 
